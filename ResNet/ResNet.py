@@ -94,11 +94,10 @@ def ResNet101(img_channels=3, num_classes = 1000):
 def ResNet50(img_channels=3, num_classes = 1000):
   return ResNet(residual_block, [3,4,36,3], img_channels, num_classes)
 
-if __name__ == '__main__':
-	x = torch.randn(2, 3, 224, 224)
-	
-	model_custom = ResNet50()
-	print(model_custom(x).shape)
-	
-	model_torch = torchvision.models.resnet50()
-	print(model_torch(x).shape)
+def test():
+  net = ResNet50()
+  x = torch.randn(2, 3, 224, 224)
+  y = net(x).to('cuda')
+  print(y.shape)
+
+test()
